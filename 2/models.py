@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
-class Organization:
+class Department:
     name: str
 
 
@@ -14,27 +14,27 @@ class Skill:
 @dataclass(frozen=True)
 class Duty:
     name: str
-    skills: list[Skill]
 
 
-@dataclass(frozen=True)
-class Vacancy:
-    name: str
-    salary: float
-    experience: int
-    duties: list[Duty]
-    organization: Organization
-
-
-@dataclass(frozen=True)
+@dataclass
 class Candidate:
     name: str
     surname: str
-    vacancy: Vacancy
     skills: list[Skill]
 
 
-@dataclass(frozen=True)
-class Department:
-    organization: Organization
+@dataclass
+class Vacancy:
     name: str
+    skills: list[Skill]
+    duties: list[Duty]
+    candidates: list[Candidate]
+    salary: float = None
+    experience: int = None
+
+
+@dataclass
+class Organization:
+    name: str
+    departments: list[Department]
+    vacancies: list[Vacancy]
